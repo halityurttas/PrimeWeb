@@ -46,6 +46,7 @@
     <Compile Include="Caching\MemoryCache.cs" />
     <Compile Include="Data\IIdentityEntity.cs" />
     <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Data\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\Singleton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

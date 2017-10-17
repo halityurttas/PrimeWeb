@@ -74,10 +74,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\ContentConfig.cs" />
+    <Compile Include="Config\UserConfig.cs" />
+    <Compile Include="DBContext.cs" />
+    <Compile Include="Domain\Content.cs" />
     <Compile Include="Identity\Login.cs" />
+    <Compile Include="Identity\Role.cs" />
     <Compile Include="Identity\User.cs" />
     <Compile Include="Identity\UserClaim.cs" />
-    <Compile Include="Identity\UserManager.cs" />
     <Compile Include="Identity\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -85,8 +89,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Domain\" />
+    <ProjectReference Include="..\PrimeWeb.Core\PrimeWeb.Core.csproj">
+      <Project>{b66a8777-734a-44b7-bcdc-66c35db13553}</Project>
+      <Name>PrimeWeb.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

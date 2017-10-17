@@ -11,5 +11,6 @@ namespace PrimeWeb.Core.Data
         TContext Context { get; }
 
         bool SaveChanges();
+        Task<bool> SaveChangesAsync();
     }
 }

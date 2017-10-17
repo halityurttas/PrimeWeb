@@ -7,15 +7,15 @@ namespace PrimeWeb.Core.Data
     {
         TEntity GetEntityById(int Id);
 
-        bool InsertEntity(TEntity entity);
+        void InsertEntity(TEntity entity);
 
-        bool InsertEntities(IList<TEntity> entities);
+        void InsertEntities(IList<TEntity> entities);
 
-        bool UpdateEntity(TEntity entity);
+        void UpdateEntity(TEntity entity);
 
-        bool UpdateEntities(IList<TEntity> entities);
+        void UpdateEntities(IList<TEntity> entities);
 
-        bool RemoveEntity(int Id);
+        void RemoveEntity(int Id);
 
         IQueryable<TEntity> AsTable();
 

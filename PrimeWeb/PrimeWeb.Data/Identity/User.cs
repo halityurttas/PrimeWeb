@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using PrimeWeb.Core.Data;
 using PrimeWeb.Data.Domain;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace PrimeWeb.Data.Identity
 {
-    public class User: IdentityUser<int, Login, UserRole, UserClaim>
+    public class User: IdentityUser<int, Login, UserRole, UserClaim>, IIdentityEntity
     {
         public User()
         {

@@ -50,8 +50,6 @@
     <Compile Include="Event\IEvent.cs" />
     <Compile Include="Event\IEventHandler.cs" />
     <Compile Include="Infrastructure\Singleton.cs" />
-    <Compile Include="Logging\ILogger.cs" />
-    <Compile Include="Logging\LogLevels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

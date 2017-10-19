@@ -1,7 +1,8 @@
-﻿using System;
+﻿using PrimeWeb.Core.Caching;
+using System;
 using System.Linq;
 
-namespace PrimeWeb.Core.Caching
+namespace PrimeWeb.Util.Caching
 {
     /// <summary>
     /// System.Runtime.Caching.MemoryCache manager

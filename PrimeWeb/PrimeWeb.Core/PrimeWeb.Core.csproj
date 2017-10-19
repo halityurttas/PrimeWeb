@@ -48,6 +48,8 @@
     <Compile Include="Data\IIdentityEntity.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\IUnitOfWork.cs" />
+    <Compile Include="Event\IEvent.cs" />
+    <Compile Include="Event\IEventHandler.cs" />
     <Compile Include="Infrastructure\Singleton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

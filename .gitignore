@@ -2,4 +2,34 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/PrimeWeb/PrimeWeb.Core/obj/Debug
+/PrimeWeb/PrimeWeb.Core/obj/**/
+/PrimeWeb/PrimeWeb.Data/obj/**/
+/PrimeWeb/PrimeWeb.Repo/obj/**/
+/PrimeWeb/.vs
+/.vs
+*.[Oo]bj
+*.user
+*.aps
+*.pch
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.[Cc]ache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.sdf
+*.pyc
+*.xml
+ipch/
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/

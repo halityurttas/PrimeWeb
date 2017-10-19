@@ -1,4 +1,4 @@
 language: csharp
-solution: PrimeWeb.sln
+solution: PrimeWeb/PrimeWeb.sln
 install:
-    - nuget restore PrimeWeb.sln
+    - nuget restore PrimeWeb/PrimeWeb.sln

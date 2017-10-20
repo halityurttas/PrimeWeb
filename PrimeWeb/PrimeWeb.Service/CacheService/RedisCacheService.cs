@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using StackExchange.Redis;
 using System;
+using System.Threading.Tasks;
 
 namespace PrimeWeb.Service.CacheService
 {
@@ -26,30 +27,30 @@ namespace PrimeWeb.Service.CacheService
             this.logService = logService;
         }
 
-        public bool AddCache<TObject>(string key, TObject data, DateTimeOffset expireOffset)
+        public async Task<bool> AddCache<TObject>(string key, TObject data, DateTimeOffset expireOffset)
         {
             try
             {
-                return database.StringSet(key, JsonConvert.SerializeObject(data), expiry: expireOffset.Offset);
+                return await database.StringSetAsync(key, JsonConvert.SerializeObject(data), expiry: expireOffset.Offset);
             }
             catch (Exception ex)
             {
                 logService.Error("Cache error", ex);
-                return false;
+                return await Task.FromResult(false);
             }
         }
 
-        public TObject GetCached<TObject>(string key)
+        public async Task<TObject> GetCached<TObject>(string key)
         {
             try
             {
-                var result = database.StringGet(key);
+                var result = await database.StringGetAsync(key);
                 return JsonConvert.DeserializeObject<TObject>(result.ToString());
             }
             catch (Exception ex)
             {
                 logService.Error("Cache error", ex);
-                return default(TObject);
+                return await Task.FromResult(default(TObject));
             }
         }
 

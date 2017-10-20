@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace PrimeWeb.Service
 {
@@ -15,7 +16,7 @@ namespace PrimeWeb.Service
         /// <param name="data">Instance of TObject</param>
         /// <param name="expireOffset">Cache expire from offset</param>
         /// <returns>true is success</returns>
-        bool AddCache<TObject>(string key, TObject data, DateTimeOffset expireOffset);
+        Task<bool> AddCache<TObject>(string key, TObject data, DateTimeOffset expireOffset);
 
         /// <summary>
         /// Get object from cache
@@ -23,7 +24,7 @@ namespace PrimeWeb.Service
         /// <typeparam name="TObject">Type of return object</typeparam>
         /// <param name="key">string unique key</param>
         /// <returns>Instance of TObject</returns>
-        TObject GetCached<TObject>(string key);
+        Task<TObject> GetCached<TObject>(string key);
 
         /// <summary>
         /// Remove object by unique string key from cache

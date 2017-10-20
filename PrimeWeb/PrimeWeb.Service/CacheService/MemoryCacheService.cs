@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace PrimeWeb.Service.CacheService
 {
@@ -17,29 +18,29 @@ namespace PrimeWeb.Service.CacheService
             _logService = logService;
         }
 
-        public bool AddCache<TObject>(string key, TObject data, DateTimeOffset expireOffset)
+        public async Task<bool> AddCache<TObject>(string key, TObject data, DateTimeOffset expireOffset)
         {
             try
             {
-                return cache.Add(key, data, expireOffset);
+                return await Task.Run(() => cache.Add(key, data, expireOffset));
             }
             catch (Exception ex)
             {
                 _logService.Error("Cache error", ex);
-                return false;
+                return await Task.FromResult(false);
             }
         }
 
-        public TObject GetCached<TObject>(string key)
+        public async Task<TObject> GetCached<TObject>(string key)
         {
             try
             {
-                return (TObject)cache.Get(key);
+                return await Task.Run(() => (TObject)cache.Get(key));
             }
             catch (Exception ex)
             {
                 _logService.Error("Cache error", ex);
-                return default(TObject);
+                return await Task.FromResult(default(TObject));
             }
         }
 

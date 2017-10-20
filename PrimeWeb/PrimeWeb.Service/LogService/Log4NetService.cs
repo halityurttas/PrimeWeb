@@ -4,6 +4,10 @@ using System;
 
 namespace PrimeWeb.Service.LogService
 {
+    /// <summary>
+    /// Log4Net service
+    /// https://logging.apache.org/log4net/
+    /// </summary>
     public class Log4NetService : ILogService
     {
         ILog _log;

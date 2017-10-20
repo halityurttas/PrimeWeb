@@ -3,14 +3,18 @@ using System;
 
 namespace PrimeWeb.Service.CacheService
 {
+    /// <summary>
+    /// Memory based cache service
+    /// implemented ICacheService
+    /// </summary>
     public class MemoryCacheService : ICacheService
     {
-        private ICache _cache;
+        private System.Runtime.Caching.MemoryCache cache;
         private ILogService _logService;
 
-        public MemoryCacheService(ICache cache, ILogService logService)
+        public MemoryCacheService(string options, ILogService logService)
         {
-            _cache = cache;
+            cache = new System.Runtime.Caching.MemoryCache(options);
             _logService = logService;
         }
 
@@ -18,7 +22,7 @@ namespace PrimeWeb.Service.CacheService
         {
             try
             {
-                return _cache.AddCache(key, data, expireOffset);
+                return cache.Add(key, data, expireOffset);
             }
             catch (Exception ex)
             {
@@ -31,7 +35,7 @@ namespace PrimeWeb.Service.CacheService
         {
             try
             {
-                return _cache.GetCached<TObject>(key);
+                return (TObject)cache.Get(key);
             }
             catch (Exception ex)
             {
@@ -44,7 +48,7 @@ namespace PrimeWeb.Service.CacheService
         {
             try
             {
-                _cache.RemoveCached(key);
+                cache.Remove(key);
             }
             catch (Exception ex)
             {

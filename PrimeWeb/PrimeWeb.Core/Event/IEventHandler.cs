@@ -2,9 +2,9 @@
 
 namespace PrimeWeb.Core.Event
 {
-    public interface IEventHandler<T>
-        where T: IEvent
+    public interface IEventHandler<TEvent>
+        where TEvent: IEvent
     {
-        Task HandleEvent(T param);
+        Task HandleEvent(TEvent param);
     }
 }

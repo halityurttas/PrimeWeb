@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrimeWeb.Core.Infrastructure
 {
@@ -27,6 +24,20 @@ namespace PrimeWeb.Core.Infrastructure
                 dictionary.Remove(typeof(TObject));
             }
             dictionary.Add(typeof(TObject), instance);
+        }
+
+        /// <summary>
+        /// Resolve an object from singleton dictionary
+        /// </summary>
+        /// <typeparam name="TObject">Type of object</typeparam>
+        /// <returns>TObject instance</returns>
+        public static TObject Get<TObject>()
+        {
+            if (dictionary.ContainsKey(typeof(TObject)))
+            {
+                return (TObject)dictionary[typeof(TObject)];
+            }
+            return default(TObject);
         }
 
         /// <summary>

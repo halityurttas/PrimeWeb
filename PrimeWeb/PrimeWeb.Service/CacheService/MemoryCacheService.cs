@@ -1,5 +1,4 @@
-﻿using PrimeWeb.Core.Caching;
-using System;
+﻿using System;
 
 namespace PrimeWeb.Service.CacheService
 {

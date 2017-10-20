@@ -60,6 +60,7 @@
     <Compile Include="ILogService.cs" />
     <Compile Include="IMailService.cs" />
     <Compile Include="LogService\Log4NetService.cs" />
+    <Compile Include="MailService\MaindrilMailService.cs" />
     <Compile Include="MailService\SmtpService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

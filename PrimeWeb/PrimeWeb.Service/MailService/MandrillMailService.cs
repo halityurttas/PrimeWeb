@@ -46,9 +46,41 @@ namespace PrimeWeb.Service.MailService
 
         }
 
-        public Task<bool> SendWithTemplateAsync(string from, string fromName, string to, string toName, string subject, string template, Dictionary<string, object> globalVars, Dictionary<string, object> vars)
+        public async Task<bool> SendWithTemplateAsync(string from, string fromName, string to, string toName, string subject, string template, Dictionary<string, object> globalVars, Dictionary<string, object> vars)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var fromAddress = new MandrillMailAddress(from, fromName);
+                var toAddress = new MandrillMailAddress(to, toName);
+                var mandrillMessage = new MandrillMessage(fromAddress, toAddress);
+                mandrillMessage.Subject = subject;
+                if (globalVars != null)
+                    foreach (var globalVar in globalVars)
+                    {
+                        mandrillMessage.AddGlobalMergeVars(globalVar.Key, globalVar.Value);
+                    }
+                if (vars != null)
+                    foreach (var loc in vars)
+                    {
+                        mandrillMessage.AddRcptMergeVars(to, loc.Key, loc.Value);
+                    }
+                var result = await api.Messages.SendTemplateAsync(mandrillMessage, template);
+                if (result.Any(w => w.Status == MandrillSendMessageResponseStatus.Invalid || w.Status == MandrillSendMessageResponseStatus.Rejected))
+                {
+                    logService.Info(result.FirstOrDefault().RejectReason);
+                    return false;
+                }
+                else
+                {
+                    logService.Info(result.FirstOrDefault().RejectReason);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                logService.Error("Mandrill Error", ex);
+                return false;
+            }
         }
     }
 }

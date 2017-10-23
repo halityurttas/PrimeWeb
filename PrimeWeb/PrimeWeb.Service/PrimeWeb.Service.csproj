@@ -56,7 +56,9 @@
   <ItemGroup>
     <Compile Include="CacheService\MemoryCacheService.cs" />
     <Compile Include="CacheService\RedisCacheService.cs" />
+    <Compile Include="CDNService\FileSystemCDNService.cs" />
     <Compile Include="ICacheService.cs" />
+    <Compile Include="ICDNService.cs" />
     <Compile Include="ILogService.cs" />
     <Compile Include="IMailService.cs" />
     <Compile Include="LogService\Log4NetService.cs" />

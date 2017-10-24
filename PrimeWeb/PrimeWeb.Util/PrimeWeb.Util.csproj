@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="FileSystem\ExcelWrapper.cs" />
     <Compile Include="HttpUtils\HttpClientWrapper.cs" />
+    <Compile Include="Network\NetworkConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\DynamicCast.cs" />
     <Compile Include="Reflection\StringSerialization.cs" />

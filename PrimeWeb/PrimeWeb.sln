@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeWeb.Core", "PrimeWeb.Core\PrimeWeb.Core.csproj", "{B66A8777-734A-44B7-BCDC-66C35DB13553}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeWeb.Util", "PrimeWeb.Util\PrimeWeb.Util.csproj", "{4EF244F9-885C-4C6E-8AFF-89ABE54E6A1D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeWeb.Service", "PrimeWeb.Service\PrimeWeb.Service.csproj", "{DF46245F-71E8-41EC-837E-C38F34F095B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeWeb.App.WebForm", "PrimeWeb.App.WebForm\PrimeWeb.App.WebForm.csproj", "{0A7A7145-EF7E-4FC6-934E-0D9CF6751859}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{DF46245F-71E8-41EC-837E-C38F34F095B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF46245F-71E8-41EC-837E-C38F34F095B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF46245F-71E8-41EC-837E-C38F34F095B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A7A7145-EF7E-4FC6-934E-0D9CF6751859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A7A7145-EF7E-4FC6-934E-0D9CF6751859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A7A7145-EF7E-4FC6-934E-0D9CF6751859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A7A7145-EF7E-4FC6-934E-0D9CF6751859}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

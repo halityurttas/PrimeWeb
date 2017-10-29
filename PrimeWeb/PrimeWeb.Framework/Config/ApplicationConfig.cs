@@ -1,17 +1,14 @@
 ﻿using Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrimeWeb.Framework.Config
 {
     public class ApplicationConfig
     {
-        public void ConfigureAuth(IAppBuilder app)
+        public void InitializeAuth(IAppBuilder app)
         {
             app.CreatePerOwinContext(Data.DBContext.Create);
+            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+            app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
         }
     }
 }

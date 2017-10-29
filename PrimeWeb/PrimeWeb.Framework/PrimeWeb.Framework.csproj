@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\ApplicationConfig.cs" />
+    <Compile Include="Config\ApplicationSignInManager.cs" />
     <Compile Include="Config\ApplicationUserManager.cs" />
     <Compile Include="Config\ApplicationUserManagerEmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

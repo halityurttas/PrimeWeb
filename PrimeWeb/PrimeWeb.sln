@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeWeb.Service", "PrimeWe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeWeb.App.WebForm", "PrimeWeb.App.WebForm\PrimeWeb.App.WebForm.csproj", "{0A7A7145-EF7E-4FC6-934E-0D9CF6751859}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeWeb.Framework", "PrimeWeb.Framework\PrimeWeb.Framework.csproj", "{147AA09A-FD82-499F-8716-FBEBBB80EA6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{0A7A7145-EF7E-4FC6-934E-0D9CF6751859}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A7A7145-EF7E-4FC6-934E-0D9CF6751859}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A7A7145-EF7E-4FC6-934E-0D9CF6751859}.Release|Any CPU.Build.0 = Release|Any CPU
+		{147AA09A-FD82-499F-8716-FBEBBB80EA6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{147AA09A-FD82-499F-8716-FBEBBB80EA6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{147AA09A-FD82-499F-8716-FBEBBB80EA6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{147AA09A-FD82-499F-8716-FBEBBB80EA6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

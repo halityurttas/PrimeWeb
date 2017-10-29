@@ -23,5 +23,10 @@ namespace PrimeWeb.Data
 
             base.OnModelCreating(modelBuilder);
         }
+
+        public static DBContext Create()
+        {
+            return new DBContext();
+        }
     }
 }

@@ -12,6 +12,13 @@ namespace PrimeWeb.Service.CDNService
         private string connectionString;
         private string container;
 
+        public AzureCDNService(ILogService logService, string connectionString, string container)
+        {
+            this.logService = logService;
+            this.connectionString = connectionString;
+            this.container = container;
+        }
+
         public string GetPath(string relativePath)
         {
             try

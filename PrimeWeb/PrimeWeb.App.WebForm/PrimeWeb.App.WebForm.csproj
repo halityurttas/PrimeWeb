@@ -355,6 +355,32 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PrimeWeb.Core\PrimeWeb.Core.csproj">
+      <Project>{b66a8777-734a-44b7-bcdc-66c35db13553}</Project>
+      <Name>PrimeWeb.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PrimeWeb.Data\PrimeWeb.Data.csproj">
+      <Project>{b0ce4071-8329-408f-839b-c89977cb1a9f}</Project>
+      <Name>PrimeWeb.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PrimeWeb.Framework\PrimeWeb.Framework.csproj">
+      <Project>{147aa09a-fd82-499f-8716-fbebbb80ea6a}</Project>
+      <Name>PrimeWeb.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PrimeWeb.Repo\PrimeWeb.Repo.csproj">
+      <Project>{95777b08-6dbb-41f8-974e-d16b4acdd26c}</Project>
+      <Name>PrimeWeb.Repo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PrimeWeb.Service\PrimeWeb.Service.csproj">
+      <Project>{df46245f-71e8-41ec-837e-c38f34f095b0}</Project>
+      <Name>PrimeWeb.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PrimeWeb.Util\PrimeWeb.Util.csproj">
+      <Project>{4ef244f9-885c-4c6e-8aff-89abe54e6a1d}</Project>
+      <Name>PrimeWeb.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

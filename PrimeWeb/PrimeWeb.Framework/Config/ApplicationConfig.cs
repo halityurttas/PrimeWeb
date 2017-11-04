@@ -2,7 +2,7 @@
 
 namespace PrimeWeb.Framework.Config
 {
-    public class ApplicationConfig
+    public abstract class ApplicationConfig
     {
         public void InitializeAuth(IAppBuilder app)
         {

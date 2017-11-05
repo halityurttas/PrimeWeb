@@ -52,11 +52,6 @@ E:\Depo\Projeler\github\PrimeWeb\PrimeWeb\PrimeWeb.Data\bin\Debug\Microsoft.Owin
 E:\Depo\Projeler\github\PrimeWeb\PrimeWeb\PrimeWeb.Data\bin\Debug\Microsoft.Owin.Security.Cookies.xml
 E:\Depo\Projeler\github\PrimeWeb\PrimeWeb\PrimeWeb.Data\bin\Debug\Microsoft.Owin.Security.OAuth.xml
 E:\Depo\Projeler\github\PrimeWeb\PrimeWeb\PrimeWeb.Data\bin\Debug\Newtonsoft.Json.xml
-E:\Depo\Projeler\github\PrimeWeb\PrimeWeb\PrimeWeb.Data\bin\Debug\tr\Microsoft.AspNet.Identity.Core.resources.dll
-E:\Depo\Projeler\github\PrimeWeb\PrimeWeb\PrimeWeb.Data\bin\Debug\tr\Microsoft.AspNet.Identity.EntityFramework.resources.dll
-E:\Depo\Projeler\github\PrimeWeb\PrimeWeb\PrimeWeb.Data\bin\Debug\tr\Microsoft.AspNet.Identity.Owin.resources.dll
-E:\Depo\Projeler\github\PrimeWeb\PrimeWeb\PrimeWeb.Data\bin\Debug\tr\Microsoft.Owin.resources.dll
-E:\Depo\Projeler\github\PrimeWeb\PrimeWeb\PrimeWeb.Data\bin\Debug\tr\Microsoft.Owin.Security.resources.dll
 E:\Depo\Projeler\github\PrimeWeb\PrimeWeb\PrimeWeb.Data\obj\Debug\PrimeWeb.Data.csprojResolveAssemblyReference.cache
 E:\Depo\Projeler\github\PrimeWeb\PrimeWeb\PrimeWeb.Data\obj\Debug\PrimeWeb.Data.csproj.CoreCompileInputs.cache
 E:\Depo\Projeler\github\PrimeWeb\PrimeWeb\PrimeWeb.Data\obj\Debug\PrimeWeb.Data.dll

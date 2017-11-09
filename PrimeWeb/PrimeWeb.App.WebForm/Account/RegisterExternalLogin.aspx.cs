@@ -1,10 +1,10 @@
-﻿using System;
-using System.Web;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Owin;
-using PrimeWeb.App.WebForm.Models;
+using PrimeWeb.Data.Identity;
+using PrimeWeb.Framework.Config;
+using System;
+using System.Web;
 
 namespace PrimeWeb.App.WebForm.Account
 {
@@ -29,7 +29,6 @@ namespace PrimeWeb.App.WebForm.Account
 
         protected void Page_Load()
         {
-            // İstekteki kimlik doğrulama sağlayıcısından gelen sonucu işle
             ProviderName = IdentityHelper.GetProviderNameFromRequest(Request);
             if (String.IsNullOrEmpty(ProviderName))
             {
@@ -54,7 +53,6 @@ namespace PrimeWeb.App.WebForm.Account
                 }
                 else if (User.Identity.IsAuthenticated)
                 {
-                    // Bağlarken Xsrf denetimi uygula
                     var verifiedloginInfo = Context.GetOwinContext().Authentication.GetExternalLoginInfo(IdentityHelper.XsrfKey, User.Identity.GetUserId());
                     if (verifiedloginInfo == null)
                     {
@@ -62,7 +60,7 @@ namespace PrimeWeb.App.WebForm.Account
                         return;
                     }
 
-                    var result = manager.AddLogin(User.Identity.GetUserId(), verifiedloginInfo.Login);
+                    var result = manager.AddLogin<User, int>(User.Identity.GetUserId<int>(), verifiedloginInfo.Login);
                     if (result.Succeeded)
                     {
                         IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
@@ -93,7 +91,7 @@ namespace PrimeWeb.App.WebForm.Account
             }
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
-            var user = new ApplicationUser() { UserName = email.Text, Email = email.Text };
+            var user = new User() { UserName = email.Text, Email = email.Text };
             IdentityResult result = manager.Create(user);
             if (result.Succeeded)
             {
@@ -108,9 +106,8 @@ namespace PrimeWeb.App.WebForm.Account
                 {
                     signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
 
-                    // Hesap onayını ve parola sıfırlamayı etkinleştirme hakkında daha fazla bilgi için lütfen https://go.microsoft.com/fwlink/?LinkID=320771 adresini ziyaret edin.
-                    // var code = manager.GenerateEmailConfirmationToken(user.Id);
-                    // Şu bağlantıyı e-postayla gönderin: IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id)
+                    //var code = manager.GenerateEmailConfirmationToken(user.Id);
+                    //IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id)
 
                     IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                     return;

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using System.Threading.Tasks;
-using PrimeWeb.App.WebForm.Models;
+using PrimeWeb.Data.Identity;
+using PrimeWeb.Framework.Config;
+using System;
+using System.Web;
 
 namespace PrimeWeb.App.WebForm.Account
 {
@@ -16,7 +12,7 @@ namespace PrimeWeb.App.WebForm.Account
         protected void PhoneNumber_Click(object sender, EventArgs e)
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var code = manager.GenerateChangePhoneNumberToken(User.Identity.GetUserId(), PhoneNumber.Text);
+            var code = manager.GenerateChangePhoneNumberToken<User, int>(User.Identity.GetUserId<int>(), PhoneNumber.Text);
             if (manager.SmsService != null)
             {
                 var message = new IdentityMessage

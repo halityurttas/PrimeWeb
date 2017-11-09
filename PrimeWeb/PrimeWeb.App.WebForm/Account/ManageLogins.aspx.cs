@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using PrimeWeb.Data.Identity;
+using PrimeWeb.Framework.Config;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 
 namespace PrimeWeb.App.WebForm.Account
 {
@@ -24,13 +24,13 @@ namespace PrimeWeb.App.WebForm.Account
 
         private bool HasPassword(ApplicationUserManager manager)
         {
-            return manager.HasPassword(User.Identity.GetUserId());
+            return manager.HasPassword<User, int>(User.Identity.GetUserId<int>());
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            CanRemoveExternalLogins = manager.GetLogins(User.Identity.GetUserId()).Count() > 1;
+            CanRemoveExternalLogins = manager.GetLogins<User, int>(User.Identity.GetUserId<int>()).Count() > 1;
 
             SuccessMessage = String.Empty;
             successMessage.Visible = !String.IsNullOrEmpty(SuccessMessage);
@@ -39,7 +39,7 @@ namespace PrimeWeb.App.WebForm.Account
         public IEnumerable<UserLoginInfo> GetLogins()
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var accounts = manager.GetLogins(User.Identity.GetUserId());
+            var accounts = manager.GetLogins<User, int>(User.Identity.GetUserId<int>());
             CanRemoveExternalLogins = accounts.Count() > 1 || HasPassword(manager);
             return accounts;
         }
@@ -48,11 +48,11 @@ namespace PrimeWeb.App.WebForm.Account
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-            var result = manager.RemoveLogin(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
+            var result = manager.RemoveLogin<User, int>(User.Identity.GetUserId<int>(), new UserLoginInfo(loginProvider, providerKey));
             string msg = String.Empty;
             if (result.Succeeded)
             {
-                var user = manager.FindById(User.Identity.GetUserId());
+                var user = manager.FindById<User, int>(User.Identity.GetUserId<int>());
                 signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
                 msg = "?m=RemoveLoginSuccess";
             }

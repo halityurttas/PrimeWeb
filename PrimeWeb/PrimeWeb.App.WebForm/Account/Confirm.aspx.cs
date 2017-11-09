@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using PrimeWeb.Data.Identity;
+using PrimeWeb.Framework.Config;
+using System;
 using System.Web;
 using System.Web.UI;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Owin;
-using PrimeWeb.App.WebForm.Models;
 
 namespace PrimeWeb.App.WebForm.Account
 {
@@ -23,7 +23,7 @@ namespace PrimeWeb.App.WebForm.Account
             if (code != null && userId != null)
             {
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var result = manager.ConfirmEmail(userId, code);
+                var result = manager.ConfirmEmail<User, int>(int.Parse(userId), code);
                 if (result.Succeeded)
                 {
                     successPanel.Visible = true;

@@ -10,6 +10,9 @@ namespace PrimeWeb.App.WebForm.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using PrimeWeb.Service;
+    using PrimeWeb.Service.CDNService;
+    using PrimeWeb.Service.CacheService;
 
     public static class NinjectWebCommon 
     {
@@ -63,6 +66,8 @@ namespace PrimeWeb.App.WebForm.App_Start
         {
             //register core modules
             Framework.Dependency.DependencyRegistrar.RegisterCoreModules(kernel);
+            kernel.Bind<ICacheService>().To<MemoryCacheService>().InSingletonScope().WithConstructorArgument("options", "");
+            //.WithConstructorArgument("path", HttpContext.Current.Server.MapPath("Content")).WithConstructorArgument("vpath", "Content");
         }        
     }
 }

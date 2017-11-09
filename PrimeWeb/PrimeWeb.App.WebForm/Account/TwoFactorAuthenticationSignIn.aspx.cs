@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using PrimeWeb.App.WebForm.Models;
+using PrimeWeb.Data.Identity;
+using PrimeWeb.Framework.Config;
+using System;
+using System.Linq;
+using System.Web;
+using System.Web.UI.WebControls;
 
 namespace PrimeWeb.App.WebForm.Account
 {
@@ -24,12 +22,8 @@ namespace PrimeWeb.App.WebForm.Account
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var userId = signinManager.GetVerifiedUserId<ApplicationUser, string>();
-            if (userId == null)
-            {
-                Response.Redirect("/Account/Error", true);
-            }
-            var userFactors = manager.GetValidTwoFactorProviders(userId);
+            var userId = signinManager.GetVerifiedUserId<User, int>();
+            var userFactors = manager.GetValidTwoFactorProviders<User, int>(userId);
             Providers.DataSource = userFactors.Select(x => x).ToList();
             Providers.DataBind();            
         }
@@ -39,7 +33,7 @@ namespace PrimeWeb.App.WebForm.Account
             bool rememberMe = false;
             bool.TryParse(Request.QueryString["RememberMe"], out rememberMe);
             
-            var result = signinManager.TwoFactorSignIn<ApplicationUser, string>(SelectedProvider.Value, Code.Text, isPersistent: rememberMe, rememberBrowser: RememberBrowser.Checked);
+            var result = signinManager.TwoFactorSignIn(SelectedProvider.Value, Code.Text, isPersistent: rememberMe, rememberBrowser: RememberBrowser.Checked);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -63,7 +57,7 @@ namespace PrimeWeb.App.WebForm.Account
                 Response.Redirect("/Account/Error");
             }
 
-            var user = manager.FindById(signinManager.GetVerifiedUserId<ApplicationUser, string>());
+            var user = manager.FindById(signinManager.GetVerifiedUserId<User, int>());
             if (user != null)
             {
                 var code = manager.GenerateTwoFactorToken(user.Id, Providers.SelectedValue);

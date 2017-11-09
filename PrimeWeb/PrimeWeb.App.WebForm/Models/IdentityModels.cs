@@ -6,47 +6,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using PrimeWeb.App.WebForm.Models;
 
-namespace PrimeWeb.App.WebForm.Models
-{
-    // Kullanıcı sınıfınıza daha fazla özellik ekleyerek kullanıcıya Kullanıcı verileri ekleyebilirsiniz. Daha fazla bilgi için lütfen https://go.microsoft.com/fwlink/?LinkID=317594 adresini ziyaret edin.
-    public class ApplicationUser : IdentityUser
-    {
-        public ClaimsIdentity GenerateUserIdentity(ApplicationUserManager manager)
-        {
-            // authenticationType'ın CookieAuthenticationOptions.AuthenticationType'ta tanımlı olan ile eşleşmesi gerektiğine dikkat edin
-            var userIdentity = manager.CreateIdentity(this, DefaultAuthenticationTypes.ApplicationCookie);
-            // Özel kullanıcı taleplerini buraya ekleyin
-            return userIdentity;
-        }
-
-        public Task<ClaimsIdentity> GenerateUserIdentityAsync(ApplicationUserManager manager)
-        {
-            return Task.FromResult(GenerateUserIdentity(manager));
-        }
-    }
-
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
-        {
-        }
-
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
-        }
-    }
-}
-
-#region Yardımcılar
+#region Helpers
 namespace PrimeWeb.App.WebForm
 {
     public static class IdentityHelper
     {
-        // Harici oturum açmaları bağlarken XSRF için kullanılır
         public const string XsrfKey = "XsrfId";
 
         public const string ProviderNameKey = "providerName";

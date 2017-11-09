@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using PrimeWeb.Data.Identity;
+using PrimeWeb.Framework.Config;
+using System;
+using System.Web;
 
 namespace PrimeWeb.App.WebForm.Account
 {
@@ -15,7 +13,7 @@ namespace PrimeWeb.App.WebForm.Account
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var phonenumber = Request.QueryString["PhoneNumber"];
-            var code = manager.GenerateChangePhoneNumberToken(User.Identity.GetUserId(), phonenumber);           
+            var code = manager.GenerateChangePhoneNumberToken<User, int>(User.Identity.GetUserId<int>(), phonenumber);           
             PhoneNumber.Value = phonenumber;
         }
 
@@ -30,11 +28,11 @@ namespace PrimeWeb.App.WebForm.Account
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
 
-            var result = manager.ChangePhoneNumber(User.Identity.GetUserId(), PhoneNumber.Value, Code.Text);
+            var result = manager.ChangePhoneNumber<User, int>(User.Identity.GetUserId<int>(), PhoneNumber.Value, Code.Text);
 
             if (result.Succeeded)
             {
-                var user = manager.FindById(User.Identity.GetUserId());
+                var user = manager.FindById<User, int>(User.Identity.GetUserId<int>());
 
                 if (user != null)
                 {
@@ -43,7 +41,6 @@ namespace PrimeWeb.App.WebForm.Account
                 }
             }
 
-            // Buralara gelebildiysek bir şeyler başarısız olmuştur, formu yeniden görüntüleyin
             ModelState.AddModelError("", "Telefon doğrulanamadı");
         }
     }

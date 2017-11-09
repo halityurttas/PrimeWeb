@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Owin;
-using PrimeWeb.App.WebForm.Models;
+using PrimeWeb.Data.Identity;
+using PrimeWeb.Framework.Config;
+using System;
+using System.Web;
 
 namespace PrimeWeb.App.WebForm.Account
 {
@@ -22,7 +17,7 @@ namespace PrimeWeb.App.WebForm.Account
 
         private bool HasPassword(ApplicationUserManager manager)
         {
-            return manager.HasPassword(User.Identity.GetUserId());
+            return manager.HasPassword<User, int>(User.Identity.GetUserId<int>());
         }
 
         public bool HasPhoneNumber { get; private set; }
@@ -37,20 +32,18 @@ namespace PrimeWeb.App.WebForm.Account
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
-            HasPhoneNumber = String.IsNullOrEmpty(manager.GetPhoneNumber(User.Identity.GetUserId()));
+            HasPhoneNumber = String.IsNullOrEmpty(manager.GetPhoneNumber<User, int>(User.Identity.GetUserId<int>()));
 
-            // İki öğeli kimlik doğrulamayı ayarladıktan sonra bunu etkinleştirin
             //PhoneNumber.Text = manager.GetPhoneNumber(User.Identity.GetUserId()) ?? String.Empty;
 
-            TwoFactorEnabled = manager.GetTwoFactorEnabled(User.Identity.GetUserId());
+            TwoFactorEnabled = manager.GetTwoFactorEnabled<User, int>(User.Identity.GetUserId<int>());
 
-            LoginsCount = manager.GetLogins(User.Identity.GetUserId()).Count;
+            LoginsCount = manager.GetLogins<User, int>(User.Identity.GetUserId<int>()).Count;
 
             var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
 
             if (!IsPostBack)
             {
-                // Oluşturulacak bölümleri belirle
                 if (HasPassword(manager))
                 {
                     ChangePassword.Visible = true;
@@ -61,11 +54,9 @@ namespace PrimeWeb.App.WebForm.Account
                     ChangePassword.Visible = false;
                 }
 
-                // Başarı mesajını oluştur
                 var message = Request.QueryString["m"];
                 if (message != null)
                 {
-                    // Sorgu dizesini eylemden çıkar
                     Form.Action = ResolveUrl("~/Account/Manage");
 
                     SuccessMessage =
@@ -89,17 +80,12 @@ namespace PrimeWeb.App.WebForm.Account
             }
         }
 
-        // phonenumber numarasını kullanıcıdan kaldır
         protected void RemovePhone_Click(object sender, EventArgs e)
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-            var result = manager.SetPhoneNumber(User.Identity.GetUserId(), null);
-            if (!result.Succeeded)
-            {
-                return;
-            }
-            var user = manager.FindById(User.Identity.GetUserId());
+
+            var user = manager.FindById<User, int>(User.Identity.GetUserId<int>());
             if (user != null)
             {
                 signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
@@ -107,20 +93,18 @@ namespace PrimeWeb.App.WebForm.Account
             }
         }
 
-        // DisableTwoFactorAuthentication
         protected void TwoFactorDisable_Click(object sender, EventArgs e)
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            manager.SetTwoFactorEnabled(User.Identity.GetUserId(), false);
+            manager.SetTwoFactorEnabled<User, int>(User.Identity.GetUserId<int>(), false);
 
             Response.Redirect("/Account/Manage");
         }
 
-        //EnableTwoFactorAuthentication 
         protected void TwoFactorEnable_Click(object sender, EventArgs e)
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            manager.SetTwoFactorEnabled(User.Identity.GetUserId(), true);
+            manager.SetTwoFactorEnabled<User, int>(User.Identity.GetUserId<int>(), true);
 
             Response.Redirect("/Account/Manage");
         }

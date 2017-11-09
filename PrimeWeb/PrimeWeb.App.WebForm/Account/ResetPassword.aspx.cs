@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using PrimeWeb.Framework.Config;
+using System;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Owin;
-using PrimeWeb.App.WebForm.Models;
 
 namespace PrimeWeb.App.WebForm.Account
 {

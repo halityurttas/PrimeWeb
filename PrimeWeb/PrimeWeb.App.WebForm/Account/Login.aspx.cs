@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.Owin;
+using PrimeWeb.Framework.Config;
+using System;
 using System.Web;
 using System.Web.UI;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Owin;
-using PrimeWeb.App.WebForm.Models;
 
 namespace PrimeWeb.App.WebForm.Account
 {
@@ -13,7 +11,6 @@ namespace PrimeWeb.App.WebForm.Account
         protected void Page_Load(object sender, EventArgs e)
         {
             RegisterHyperLink.NavigateUrl = "Register";
-            // Parola sıfırlama işlevi için hesap doğrulama etkinleştirildiğinde bunu etkinleştirin
             //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
             OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
@@ -27,12 +24,9 @@ namespace PrimeWeb.App.WebForm.Account
         {
             if (IsValid)
             {
-                // Kullanıcı parolasını doğrulayın
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
 
-                // Bu, hesap kilitlenmesine yönelik oturum açma hatalarını saymaz
-                // Parola hatalarının kilitlenmeyi tetiklemesini sağlamak için shouldLockout: true olarak değiştirin
                 var result = signinManager.PasswordSignIn(Email.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
 
                 switch (result)

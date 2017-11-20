@@ -56,6 +56,27 @@ namespace PrimeWeb.App.WebForm
             );
 
             #endregion
+
+            #region Admin
+
+            bundles.Add(new StyleBundle("~/css/adminessential")
+                .Include(
+                    "~/bower_components/font-awesome/css/font-awesome.min.css",
+                    "~/bower_components/Ionicons/css/ionicons.min.css",
+                    "~/bower_components/admin-lte/dist/css/AdminLTE.min.css",
+                    "~/bower_components/admin-lte/dist/css/skins/skin-blue.min.css"
+                )
+            );
+            ;
+
+            bundles.Add(new ScriptBundle("~/js/adminessential")
+                .Include(
+                    "~/bower_components/jquery-ui/jquery-ui.min.js",
+                    "~/bower_components/admin-lte/dist/js/adminlte.min.js"
+                )
+            );
+            
+            #endregion
         }
     }
 }

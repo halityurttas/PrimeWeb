@@ -8,14 +8,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PrimeWeb</title>
-    <asp:PlaceHolder runat="server">
+    <asp:PlaceHolder runat="server" EnableViewState="false">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <%: Styles.Render("~/css/essential") %>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body class="hold-transition skin-blue sidebar-mini">
     <form id="form1" runat="server">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
@@ -25,5 +25,8 @@
     <%: Scripts.Render("~/bundles/WebFormsJs") %>
     <%: Scripts.Render("~/bundles/MsAjaxJs") %>
     <%: Scripts.Render("~/js/essential") %>
+    <asp:ContentPlaceHolder runat="server" ID="foot">
+
+    </asp:ContentPlaceHolder>
 </body>
 </html>

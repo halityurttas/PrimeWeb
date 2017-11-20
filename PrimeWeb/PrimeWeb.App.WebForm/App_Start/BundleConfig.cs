@@ -38,6 +38,24 @@ namespace PrimeWeb.App.WebForm
                     Path = "~/Scripts/respond.min.js",
                     DebugPath = "~/Scripts/respond.js",
                 });
+
+            #region Essentials
+
+            bundles.Add(new StyleBundle("~/css/essential")
+                .Include(
+                    "~/bower_components/bootstrap/dist/css/bootstrap.min.css",
+                    "~/bower_components/bootstrap/dist/css/bootstrap-theme.min.css"
+                )
+            );
+
+            bundles.Add(new ScriptBundle("~/js/essential")
+                .Include(
+                    "~/bower_components/jquery/dist/jquery.min.js",
+                    "~/bower_components/bootstrap/dist/js/bootstrap.min.js"
+                )
+            );
+
+            #endregion
         }
     }
 }

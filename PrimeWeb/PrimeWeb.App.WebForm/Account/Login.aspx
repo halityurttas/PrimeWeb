@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Oturum aç" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="PrimeWeb.App.WebForm.Account.Login" Async="true" %>
+﻿<%@ Page Title="Oturum aç" Language="C#" MasterPageFile="~/Layouts/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="PrimeWeb.App.WebForm.Account.Login" Async="true" %>
 
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
